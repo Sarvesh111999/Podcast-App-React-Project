@@ -29,10 +29,11 @@ function LoginForm() {
           password
         );
         const user = userCredential.user;
-
+        console.log("userCredential", userCredential)
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const userData = userDoc.data();
-        console.log("userData", userData);
+        console.log("loginUserDoc", userDoc);
+        console.log("loginUserData", userData);
 
         dispatch(
           setUser({

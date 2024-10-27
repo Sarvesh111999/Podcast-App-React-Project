@@ -74,3 +74,8 @@
   .active {
     color: var(--white) !important;
   }
+  .profile{
+    justify-content: right !important;
+    gap: 1.25rem !important;
+    align-items: center !important;
+  }

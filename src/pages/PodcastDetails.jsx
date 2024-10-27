@@ -26,7 +26,6 @@ function PodcastDetailsPage() {
     fetchData();
 
     return () => {
-      // Cleanup logic here (if needed)
     };
   }, [id, navigate]);
 
@@ -34,14 +33,13 @@ function PodcastDetailsPage() {
     try {
       const docRef = doc(db, "podcasts", id);
       const docSnap = await getDoc(docRef);
-      console.log(docSnap, docRef)
+      console.log("getData", docSnap, docRef)
 
       if (docSnap.exists()) {
         console.log("Document data", docSnap.data());
         setPodcast({ id: id, ...docSnap.data() });
         toast.success("Podcast Found");
       } else {
-        // docSnap.data() will be undefined in this case
         console.log("No such Document!")
         toast.error("No such Podcast!")
         navigate("/podcasts");
