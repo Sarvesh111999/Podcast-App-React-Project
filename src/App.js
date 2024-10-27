@@ -22,11 +22,15 @@ function App() {
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log("user", user)
         const unsubscribeSnapshot = onSnapshot(
           doc(db, "users", user.uid),
           (userDoc) => {
             if (userDoc.exists()) {
+              console.log("userDoc", userDoc)
               const userData = userDoc.data();
+              console.log("userData", userData)
+              
               dispatch(
                 setUser({
                   name: userData.name,
@@ -61,10 +65,10 @@ function App() {
           <Route path="/" element={<SignUpPage />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/profile" element={<Profile />} />
-             <Route path="/create-a-podcast" element={<CreateAPodcastPage />} />
-           <Route path="/podcasts" element={<PodcastsPage />} />
-            <Route path="/podcast/:id" element={<PodcastDetailsPage />} /> 
-            <Route path="/podcast/:id/create-episode" element={<CreateAnEpisodePage />} /> 
+            <Route path="/create-a-podcast" element={<CreateAPodcastPage />} />
+            <Route path="/podcasts" element={<PodcastsPage />} />
+            <Route path="/podcast/:id" element={<PodcastDetailsPage />} />
+            <Route path="/podcast/:id/create-episode" element={<CreateAnEpisodePage />} />
 
             {/* <Route
               path="/podcast/:id/create-episode"
